@@ -20,4 +20,8 @@ public class ChosenTo implements Task {
                 Navigate.to(MainMenu.BuyTickets)
         );
     }
+
+    public static Performable requestAssistedTravel() {
+        return null;
+    }
 }

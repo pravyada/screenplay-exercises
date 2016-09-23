@@ -6,6 +6,7 @@ import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Performable;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
+import net.thucydides.core.annotations.Step;
 import org.openqa.selenium.Keys;
 import serenitylabs.tutorials.trains.ui.TicketTypeForm;
 
@@ -14,36 +15,37 @@ import serenitylabs.tutorials.trains.ui.TicketTypeForm;
  */
 public class ViewTheAvailableTickets implements Performable {
 
-    private final String from;
-    private final String to;
+    private final String departureStation;
+    private final String destinationStation;
 
-    public ViewTheAvailableTickets(String from, String to){
-        this.from = from;
-        this.to = to;
+    public ViewTheAvailableTickets(String departureStation, String destinationStation){
+        this.departureStation = departureStation;
+        this.destinationStation = destinationStation;
     }
 
     public static ViewTheAvailableTicketsBuilder from(String departuer) {
         return new ViewTheAvailableTicketsBuilder(departuer);
     }
 
+    @Step("View the available tickets from #departureStation to #destinationStation")
     @Override
     public <T extends Actor> void performAs(T actor) {
             actor.attemptsTo(
-                    Enter.theValue(from).into(TicketTypeForm.FROM).thenHit(Keys.TAB),
-                    Enter.theValue(to).into(TicketTypeForm.DESTINATION).thenHit(Keys.TAB),
+                    Enter.theValue(departureStation).into(TicketTypeForm.FROM).thenHit(Keys.ARROW_DOWN,Keys.TAB),
+                    Enter.theValue(destinationStation).into(TicketTypeForm.DESTINATION).thenHit(Keys.ARROW_DOWN,Keys.TAB),
                     Click.on(TicketTypeForm.BUY_TICKETS)
             );
     }
 
     public static class ViewTheAvailableTicketsBuilder {
-        private String from;
+        private String departureStation;
 
-        public ViewTheAvailableTicketsBuilder(String departuer) {
-            this.from = departuer;
+        public ViewTheAvailableTicketsBuilder(String departureStation) {
+            this.departureStation = departureStation;
         }
 
-        public Performable to(String to) {
-            return Instrumented.instanceOf(ViewTheAvailableTickets.class).withProperties(from,to);
+        public Performable to(String destinationStation) {
+            return Instrumented.instanceOf(ViewTheAvailableTickets.class).withProperties(departureStation,destinationStation);
         }
     }
 }

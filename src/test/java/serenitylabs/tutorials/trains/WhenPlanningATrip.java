@@ -11,6 +11,7 @@ import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 import serenitylabs.tutorials.trains.questions.TheOutBoundJourneySummery;
 import serenitylabs.tutorials.trains.questions.TheOutBoundJourneySummery.*;
+import serenitylabs.tutorials.trains.tasks.EnterHerName;
 import serenitylabs.tutorials.trains.ui.ChosenTo;
 import serenitylabs.tutorials.trains.tasks.ViewTheAvailableTickets;
 
@@ -47,5 +48,13 @@ public class WhenPlanningATrip {
                 seeThat(TheOutBoundJourneySummery.origin(), is("London Paddington")),
                 seeThat(TheOutBoundJourneySummery.destination(), is("Oxford"))
         );
+    }
+
+
+    @Test
+    public void request_assisted_travel(){
+        tracy.has(ChosenTo.requestAssistedTravel());
+
+        tracy.attemptsTo(EnterHerName.as("Dr","Tracy","The Traveller"));
     }
 }
