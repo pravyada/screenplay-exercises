@@ -1,12 +1,15 @@
 package serenitylabs.tutorials.trains.tasks;
 
+import com.thoughtworks.selenium.webdriven.commands.ClickAt;
 import net.serenitybdd.core.steps.Instrumented;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Performable;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
+import net.serenitybdd.screenplay.questions.Enabled;
 import net.thucydides.core.annotations.Step;
+import org.openqa.jetty.html.Select;
 import org.openqa.selenium.Keys;
 import serenitylabs.tutorials.trains.ui.TicketTypeForm;
 
@@ -20,7 +23,7 @@ public class ViewTheAvailableTickets implements Task {
         actor.attemptsTo(
                 Enter.theValue(departureStation).into(TicketTypeForm.FROM).thenHit(Keys.ARROW_DOWN, Keys.TAB),
                 Enter.theValue(destinationStation).into(TicketTypeForm.TO).thenHit(Keys.ARROW_DOWN, Keys.TAB),
-                Click.on(TicketTypeForm.BUY_TICKETS)
+                Click.on(TicketTypeForm.RETURN)
 
         );
     }
