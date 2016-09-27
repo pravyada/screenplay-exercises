@@ -5,6 +5,7 @@ import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Interaction;
 import net.serenitybdd.screenplay.Performable;
 import net.serenitybdd.screenplay.actions.Open;
+import net.thucydides.core.annotations.Step;
 import serenitylabs.tutorials.trains.tasks.BuyTicketsPage;
 
 /**
@@ -23,10 +24,11 @@ public class Navigate implements Interaction {
         return Instrumented.instanceOf(Navigate.class).withProperties(mainMenuOption);
     }
 
+
     @Override
+    @Step("{0} chosen to navigate to #buyTicketsPage")
     public <T extends Actor> void performAs(T actor) {
         actor.attemptsTo(
-
                 Open.browserOn().the(buyTicketsPage)
         );
     }

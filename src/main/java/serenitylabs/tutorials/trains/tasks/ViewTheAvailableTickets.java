@@ -27,8 +27,11 @@ public class ViewTheAvailableTickets implements Performable {
         return new ViewTheAvailableTicketsBuilder(departuer);
     }
 
-    @Step("View the available tickets from #departureStation to #destinationStation")
+
+
+
     @Override
+    @Step("{0} views available tickets from #departureStation to #destinationStation")
     public <T extends Actor> void performAs(T actor) {
             actor.attemptsTo(
                     Enter.theValue(departureStation).into(TicketTypeForm.FROM).thenHit(Keys.ARROW_DOWN,Keys.TAB),

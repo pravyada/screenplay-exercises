@@ -8,7 +8,9 @@ import org.openqa.selenium.By;
  */
 public class TicketTypeForm {
     public static final Target FROM = Target.the("Departure-Station").located(By.id("depart-from"));
-    public static final Target DESTINATION = Target.the("Destination-Station").located(By.id("#going-to"));
-    public static final Target BUY_TICKETS = Target.the("BuyTicketButton").located(By.id("button planner__submit"));
+    public static final Target DESTINATION = Target.the("Destination-Station").located(By.id("going-to"));
+    public static final Target BUY_TICKETS = Target.the("BuyTicketButton").located(By.className("planner__submit"));
+    public static final Target HEADING = Target.the("Heading").located(By.className("planner__title"));
+    public static final Target SINGLE = Target.the("Single Status").located(By.className("single"));
 }
 
