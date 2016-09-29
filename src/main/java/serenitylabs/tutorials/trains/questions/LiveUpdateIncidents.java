@@ -10,4 +10,8 @@ public class LiveUpdateIncidents {
     public static Question<List<String>> forLineUpdates() {
         return actor -> Text.of(LiveUpdates.LINE_UPDATES).viewedBy(actor).asList();
     }
+
+    public static Question<List<String>> forGeneralUpdates() {
+        return actor -> Text.of(LiveUpdates.GENERAL_UPDATES).viewedBy(actor).asList();
+    }
 }

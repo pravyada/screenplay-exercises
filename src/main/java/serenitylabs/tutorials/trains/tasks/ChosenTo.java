@@ -36,4 +36,9 @@ public class ChosenTo implements Task {
     public static Performable checkTheLiveUpdates() {
         return instrumented(ChosenTo.class, MainMenu.CheckForLiveUpdates);
     }
+
+    public static Performable checkTheGeneralUpdates() {
+        return instrumented(ChosenTo.class,MainMenu.CheckForLiveUpdates);
+
+    }
 }
