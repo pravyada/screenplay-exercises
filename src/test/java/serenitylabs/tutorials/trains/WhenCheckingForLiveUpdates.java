@@ -5,6 +5,7 @@ import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
 import net.serenitybdd.screenplay.questions.Text;
 import net.thucydides.core.annotations.Managed;
+import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,6 +17,7 @@ import serenitylabs.tutorials.trains.ui.LiveUpdates;
 
 import static net.serenitybdd.screenplay.EventualConsequence.eventually;
 import static net.serenitybdd.screenplay.GivenWhenThen.*;
+import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 import static net.serenitybdd.screenplay.questions.AggregateQuestions.theTotalNumberOf;
 import static org.hamcrest.Matchers.equalTo;
 
@@ -67,5 +69,35 @@ public class WhenCheckingForLiveUpdates {
         );
     }
 
+
+    @Test
+
+    public void station_updates_should_be_available(){
+        givenThat(tracy).has(ChosenTo.checkTheStationUpdates());
+
+        when(tracy).attemptsTo(
+            ViewTheLiveUpdates.forStationUpdates()
+        );
+
+        int stationUpdateCount = Text.of(LiveUpdates.STATION_UPDATE_BADGE).viewedBy(tracy).asInteger();
+
+        then(tracy).should(
+                eventually(seeThat("the number of incident messages",theTotalNumberOf(LiveUpdateIncidents.forStationUpdate()),equalTo(stationUpdateCount)))
+        );
+    }
+
+    @Test
+    public void train_cancelation_update_should_be_available(){
+        givenThat(tracy).has(ChosenTo.checkTrainCancelationUpdates());
+
+        when(tracy).attemptsTo(
+                ViewTheLiveUpdates.forTrainCancelation()
+        );
+        int trainCancellationCount = Text.of(LiveUpdates.TRAIN_CANCELLATION_BADGE).viewedBy(tracy).asInteger();
+        then(tracy).should(
+                eventually(seeThat(theTotalNumberOf(LiveUpdateIncidents.forTrainCancelUpdate()),equalTo(trainCancellationCount)))
+        );
+
+    }
 
 }

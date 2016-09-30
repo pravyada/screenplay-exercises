@@ -41,4 +41,12 @@ public class ChosenTo implements Task {
         return instrumented(ChosenTo.class,MainMenu.CheckForLiveUpdates);
 
     }
+
+    public static Performable checkTheStationUpdates() {
+        return instrumented(ChosenTo.class,MainMenu.CheckForLiveUpdates);
+    }
+
+    public static Performable checkTrainCancelationUpdates() {
+        return instrumented(ChosenTo.class,MainMenu.CheckForLiveUpdates);
+    }
 }

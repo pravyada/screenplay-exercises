@@ -33,4 +33,12 @@ public class ViewTheLiveUpdates implements Task {
     public static Performable forGeneralUpdate() {
         return Instrumented.instanceOf(ViewTheLiveUpdates.class).withProperties(UpdateType.GeneralUpdates);
     }
+
+    public static Performable forStationUpdates() {
+        return Instrumented.instanceOf(ViewTheLiveUpdates.class).withProperties(UpdateType.StationUpdates);
+    }
+
+    public static Performable forTrainCancelation() {
+        return Instrumented.instanceOf(ViewTheLiveUpdates.class).withProperties(UpdateType.TrainCancelation);
+    }
 }
